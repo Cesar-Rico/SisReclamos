@@ -1,0 +1,113 @@
+create table ReclamoCanalAtencion (
+	idReclamoCanalAtencion serial primary key,
+	descripcion varchar(200),
+	fechaRegistro date,
+	estado varchar(50)
+
+);
+
+create table canalAtencion (
+	idCanalAtencion serial primary key,
+	nombre varchar(100),
+	descripcion varchar(200),
+	vigencia date,
+	URL varchar(100),
+	estado int
+);
+
+create table criteriosAdmisibilidad (
+	idCriteriosAdmisibilidad serial primary key,
+	descripcion varchar(200),
+	vigente date,
+	requisitos varchar(100),
+	estado int
+);
+create table cliente(
+	idCliente serial primary key,
+	nombre varchar(50),
+	email varchar(100),
+	numeroCliente varchar(10),
+	dni int,
+	descripcion varchar(200),
+	tipoCliente varchar(50),
+	ubicacion varchar(200),
+	potenciaMinima numeric,
+	potenciaMaxima numeric
+);
+
+create table tipoClasificacion(
+	idTipoClasificacion serial primary key,
+	nombre varchar(100),
+	descripcion varchar(100),
+	tiempoMaximoAtencion int
+);
+
+create table reclamoEmpresa(
+	idReclamoEmpresa serial primary key,
+	descripcion varchar(200),
+	severidad varchar(50),
+	fechaReglamoIngresado date,
+	fechaReclamoProcesado date,
+	fechaMaximaAtencion date,
+	estado varchar(50)
+
+);
+
+create table personalEmpresa(
+	idPersonalEmpresa serial primary key,
+	nombre varchar(50),
+	codigoTrabajador varchar(50),
+	cargo varchar(50),
+	area varchar(50),
+	vigente date,
+	estado varchar(50)
+
+);
+
+create table atencionComercial(
+	idAtencionComercial serial primary key,
+	descripcion varchar(100),
+	tarifa varchar(50)
+);
+
+alter table reclamocanalatencion
+	add column idCliente int
+		references cliente;
+
+alter table reclamocanalatencion
+	add column idCriterioAdmisibilidad int
+		references criteriosadmisibilidad;
+
+alter table reclamocanalatencion
+	add column idCanalAtencion int
+		references canalatencion;
+
+alter table reclamocanalatencion
+	add column idPersonal int
+		references personalEmpresa;
+	
+alter table reclamoempresa 
+	add column idTipoClasificacion int
+		references tipoClasificacion;
+	
+alter table reclamoEmpresa 
+	add column idReclamoCanalAtencion int
+		references reclamoCanalAtencion;
+
+alter table reclamoEmpresa 
+	add column idPersonalAsignado int
+		references personalEmpresa;
+		
+alter table reclamoEmpresa 
+	add column idCliente int
+		references Cliente;
+		
+alter table atencionComercial 
+	add column idPersonalAsignado int
+		references personalEmpresa;
+
+alter table atencionComercial 
+	add column idReclamoEmpresa int
+		references reclamoEmpresa;
+
+

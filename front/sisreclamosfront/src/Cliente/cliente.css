@@ -1,0 +1,17 @@
+.sidebar {
+height: 100vh !important;
+width: 40vh;
+background-color: white !important;
+}
+
+#primeraOpcion {
+margin-top: 10rem;
+}
+
+#header .pro-sidebar-inner {
+background-color: transparent;
+}
+
+.containerApp {
+display: flex;
+}
