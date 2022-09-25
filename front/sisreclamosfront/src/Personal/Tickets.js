@@ -2,9 +2,10 @@ import React from "react"
 import { ProSidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar"
 import 'react-pro-sidebar/dist/css/styles.css'
 import { Link } from "react-router-dom"
-import './personal.css'
 import { Table, Paper, TableContainer, TableHead, TableCell, TableRow, TableBody, tableCellClasses } from '@mui/material';
 import {styled} from '@mui/material/styles'
+
+
 function createData(
     codigo,
     descripcion,
@@ -30,8 +31,7 @@ function createData(
     },
   }));
   
-
-export default function Personal(props) {
+  export default function Tickets(props) {
 
     const nuevoReclamo = () => {
         return null;
@@ -58,7 +58,7 @@ export default function Personal(props) {
         </ProSidebar>
         </div>
         <div className="content">
-            <div style={{border: "2px solid black", padding: '25px 0'}}>Reclamos canal de atencion</div>
+            <div style={{border: "2px solid black", padding: '25px 0'}}>Tickets</div>
             <div style={{right: '0px', display: 'flex', flexDirection: 'row-reverse', marginTop: '2rem', marginBottom: '2rem'}}>
                 
             </div>
