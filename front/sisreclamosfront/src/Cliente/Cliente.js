@@ -1,13 +1,18 @@
-import React from "react"
+import React, { forwardRef } from "react"
 import { ProSidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar"
 import 'react-pro-sidebar/dist/css/styles.css'
 import { Link } from "react-router-dom"
 import { Table, Paper, TableContainer, TableHead, TableCell, TableRow, TableBody, tableCellClasses } from '@mui/material';
 import {styled} from '@mui/material/styles'
-
+import { useNavigate } from 'react-router-dom'
+import VisibilityIcon from '@mui/icons-material/Visibility'
+import EditIcon from '@mui/icons-material/Edit'
+import WorkIcon from '@mui/icons-material/Work'
 import './cliente.css'
 
-
+const tableIcons = {
+    View: forwardRef((props, ref) => <VisibilityIcon {...props} ref={ref}/>)
+}
 function createData(
     codigo,
     descripcion,
@@ -33,10 +38,20 @@ function createData(
     },
   }));
   
+  const cliente = {
+      numeroCliente: '1233232',
+      dniCliente: '03075844'
+  }
 export default function Cliente(props) {
 
+    const navigate = useNavigate();
+
     const nuevoReclamo = () => {
-        return null;
+        navigate('/nuevoReclamoCliente', {state: {cliente: cliente}});
+    }
+    
+    const llamarVisualizar = (codigoReclamo) => {
+        navigate('/visualizarReclamo', {state: {codigoReclamo: codigoReclamo}});
     }
     return (
         <div className="containerApp">
@@ -51,6 +66,10 @@ export default function Cliente(props) {
                         Documentos
                         <Link to="/documentosCliente" />
                     </MenuItem>
+                    <MenuItem style={{marginTop: '40rem'}}>
+                        Cerrar sesión
+                        <Link to="/" />
+                    </MenuItem>
                 </Menu>
             </ProSidebar>
             </div>
@@ -61,7 +80,7 @@ export default function Cliente(props) {
             </div>
             
             <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 1250 }} aria-label="customized table" >
+                <Table sx={{ minWidth: 1250 }} aria-label="customized table">
                 <TableHead>
                     <TableRow>
                     <StyledTableCell>Codigo</StyledTableCell>
@@ -85,6 +104,13 @@ export default function Cliente(props) {
                         <TableCell align="left">{row.numeroCliente}</TableCell>
                         <TableCell align="left">{row.canalAtencion}</TableCell>
                         <TableCell align="left">{row.fechaRegistro}</TableCell>
+                        <TableCell align="left">
+                            <VisibilityIcon style={{cursor: 'pointer'}} onClick={() => {
+                            llamarVisualizar(row.codigo);
+                        }}/>
+                        <EditIcon style={{cursor: 'pointer', marginLeft: '0.5rem'}}/>
+                        <WorkIcon style={{cursor: 'pointer', marginLeft: '0.5rem'}}/>
+                          </TableCell>
                     </TableRow>
                     ))}
                 </TableBody>

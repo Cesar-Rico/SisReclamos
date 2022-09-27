@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 import { Table, Paper, TableContainer, TableHead, TableCell, TableRow, TableBody, tableCellClasses } from '@mui/material';
 import {styled} from '@mui/material/styles'
 import './cliente.css'
-
+import DownloadIcon from '@mui/icons-material/Download';
 
 function createData(
     codigo,
@@ -48,6 +48,10 @@ export default function DocumentosCliente(props) {
                         Documentos
                         <Link to="/documentosCliente" />
                     </MenuItem>
+                    <MenuItem style={{marginTop: '40rem'}}>
+                        Cerrar sesión
+                        <Link to="/" />
+                    </MenuItem>
                 </Menu>
             </ProSidebar>
             </div>
@@ -82,6 +86,9 @@ export default function DocumentosCliente(props) {
                         <TableCell align="left">{row.tipoDocumento}</TableCell>
                         <TableCell align="left">{row.fechaGenerado}</TableCell>
                         <TableCell align="left">{row.reclamoRelacionado}</TableCell>
+                        <TableCell><DownloadIcon style={{cursor: 'pointer', marginLeft: '0.5rem'}} onClick={() => {
+                            alert('Descargaste el documento con codigo ' + row.codigo); 
+                        }}/></TableCell>
                     </TableRow>
                     ))}
                 </TableBody>

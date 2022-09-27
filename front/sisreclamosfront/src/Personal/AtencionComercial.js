@@ -1,10 +1,10 @@
 import React from "react"
 import { ProSidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar"
 import 'react-pro-sidebar/dist/css/styles.css'
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { Table, Paper, TableContainer, TableHead, TableCell, TableRow, TableBody, tableCellClasses } from '@mui/material';
 import {styled} from '@mui/material/styles'
-
+import VisibilityIcon from '@mui/icons-material/Visibility'
 
 function createData(
     codigo,
@@ -33,8 +33,13 @@ function createData(
   
   export default function AtencionComercial(props) {
 
+    const navigate = useNavigate();
     const nuevoReclamo = () => {
         return null;
+    }
+
+    const llamarVisualizar = (codigoAtencionComercial) => {
+        navigate('/visualizarAtencionComercial', {state: {codigoAtencionComercial: codigoAtencionComercial}});
     }
 
     return (
@@ -53,6 +58,10 @@ function createData(
                 <MenuItem>
                     Tickets
                     <Link to="/tickets" />
+                    </MenuItem>
+                    <MenuItem style={{marginTop: '40rem'}}>
+                        Cerrar sesión
+                        <Link to="/" />
                     </MenuItem>
             </Menu>
         </ProSidebar>
@@ -88,6 +97,10 @@ function createData(
                         <TableCell align="left">{row.numeroCliente}</TableCell>
                         <TableCell align="left">{row.canalAtencion}</TableCell>
                         <TableCell align="left">{row.fechaRegistro}</TableCell>
+                        <TableCell align="left">
+                            <VisibilityIcon style={{cursor: 'pointer'}} onClick={() => {
+                                llamarVisualizar(row.codigo);
+                        }}/></TableCell>
                     </TableRow>
                     ))}
                 </TableBody>

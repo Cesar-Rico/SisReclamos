@@ -54,6 +54,10 @@ function createData(
                     Tickets
                     <Link to="/tickets" />
                     </MenuItem>
+                    <MenuItem style={{marginTop: '40rem'}}>
+                        Cerrar sesión
+                        <Link to="/" />
+                    </MenuItem>
             </Menu>
         </ProSidebar>
         </div>

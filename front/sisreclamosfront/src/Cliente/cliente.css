@@ -15,3 +15,7 @@ background-color: transparent;
 .containerApp {
 display: flex;
 }
+
+input, label {
+    display:block;
+}
