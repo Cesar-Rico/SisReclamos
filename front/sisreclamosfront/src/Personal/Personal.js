@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState, useEffect} from "react"
 import { ProSidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar"
 import 'react-pro-sidebar/dist/css/styles.css'
 import { Link, useNavigate } from "react-router-dom"
@@ -7,23 +7,10 @@ import { Table, Paper, TableContainer, TableHead, TableCell, TableRow, TableBody
 import {styled} from '@mui/material/styles'
 import EditIcon from '@mui/icons-material/Edit'
 import IndeterminateCheckBoxIcon from '@mui/icons-material/IndeterminateCheckBox';
+import axios from "axios"
 
-function createData(
-    codigo,
-    descripcion,
-    numeroCliente,
-    canalAtencion,
-    fechaRegistro
-  ) {
-    return { codigo, descripcion, numeroCliente, canalAtencion, fechaRegistro };
-  }
 
-  const rows = [
-    createData('0001', 'Se fue la luz en mi calle', 4728282, 'Facebook', "17/09/2022"),
-    createData('0002', 'Recibi un mal recibo', 484383, 'Whatsapp', "16/08/2922")
-  ];
-
-  const StyledTableCell = styled(TableCell)(({ theme }) => ({
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
       backgroundColor: '#f3f2f7',
       color: '#67627b',
@@ -36,6 +23,7 @@ function createData(
 
 export default function Personal(props) {
 
+    const [rows, setRows] = useState([]);
     const navigate = useNavigate();
     const nuevoReclamo = () => {
         navigate('/nuevoReclamoPersonal');
@@ -43,6 +31,14 @@ export default function Personal(props) {
 
     const llamarEditar = () => {
         navigate('/editarReclamoPersonal');
+    }
+
+    useEffect(() => {
+        poblarTabla(1);
+    }, []);
+
+    const poblarTabla = (idPersonal) => {
+        axios.get('http://localhost:5000/reclamosCanalAtencionPersonal/' + idPersonal).then( res => setRows(res.data));
     }
     return (
         <div className="containerApp">
@@ -93,11 +89,11 @@ export default function Personal(props) {
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
                         <TableCell component="th" scope="row">
-                        {row.codigo}
+                        {row.idReclamoCanalAtencion}
                         </TableCell>
                         <TableCell align="left">{row.descripcion}</TableCell>
                         <TableCell align="left">{row.numeroCliente}</TableCell>
-                        <TableCell align="left">{row.canalAtencion}</TableCell>
+                        <TableCell align="left">{row.nombreCanalAtencion}</TableCell>
                         <TableCell align="left">{row.fechaRegistro}</TableCell>
                         <TableCell align="left">
                             <EditIcon style={{cursor: 'pointer', marginLeft: '0.5rem'}} onClick={() => {

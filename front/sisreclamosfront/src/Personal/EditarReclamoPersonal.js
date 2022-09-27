@@ -24,6 +24,16 @@ export default function EditarReclamoPersonal(props) {
         alert('Actualizaste un reclamo');
         navigate('/personal');
     }
+
+    const rechazarReclamo = () => {
+        alert('Rechazaste un reclamo');
+        navigate('/personal');
+    }
+
+    const aprobarReclamo = () => {
+        alert('Aprobaste un reclamo');
+        navigate('/personal');
+    }
     return (
         <div className="containerApp">
             <div className='sidebar'>
@@ -88,8 +98,10 @@ export default function EditarReclamoPersonal(props) {
                 </div>
             </div>           
             <div style={{textAlign: 'center', marginTop: '4rem'}}>
-            <button className="btn" style={{backgroundColor : "#858587", color: "white", width: '6rem', marginRight: '3rem'}} onClick={limpiar}>Cancelar</button>
-                <button className="btn" style={{backgroundColor : "#5d5fef", color: "white", width: '6rem'}} onClick={actualizarReclamo}>Guardar</button>
+                <button className="btn" style={{backgroundColor : "#858587", color: "white", width: '6rem', marginRight: '2rem'}} onClick={limpiar}>Cancelar</button>
+                <button className="btn" style={{backgroundColor : "#5d5fef", color: "white", width: '6rem', marginRight: '2rem'}} onClick={actualizarReclamo}>Guardar</button>
+                <button className="btn" style={{backgroundColor : "#5d5fef", color: "white", width: '6rem', marginRight: '2rem'}} onClick={rechazarReclamo}>Rechazar</button>
+                <button className="btn" style={{backgroundColor : "#5d5fef", color: "white", width: '6rem'}} onClick={aprobarReclamo}>Aprobar</button>
             </div>
             </div>
         </div>

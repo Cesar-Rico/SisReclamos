@@ -64,38 +64,38 @@ export default function VisualizarAtencionComercial(props){
             <div className="content" style={{width: '80%'}}>
             <div style={{border: "2px solid black", padding: '25px 0'}}>Visualizar Atención Comercial </div>
             <div style={{width: '100rem', display: 'flex'}}>
-                <div style={{marginTop: '10rem', border: '2px solid red', display: 'flex', flexDirection: 'column', width: '50%'}}>
-                <div style={{float:'left', marginRight: '20px'}}>
+                <div style={{marginTop: '5rem', border: '2px solid red', display: 'flex', flexDirection: 'column', width: '50%'}}>
+                <div style={{float:'left', marginRight: '20px', marginTop: '2rem'}}>
                         <label for="codigoAtencionComercial">Código Atención Comercial</label>
                         <input id="codigoAtencionComercial" type="number" value={atencionComercial.codigoAtencionComercial} name="codigoAtencionComercial" disabled></input>
                     </div>
-                    <div style={{float:'left', marginRight: '20px'}}>
+                    <div style={{float:'left', marginRight: '20px', marginTop: '2rem'}}>
                         <label for="numeroCliente">Número Cliente</label>
                         <input id="numeroCliente" type="number" value={atencionComercial.codigoAtencionComercial} name="numeroCliente" disabled></input>
                     </div>
-                    <div style={{float:'left', marginRight: '20px'}}>
+                    <div style={{float:'left', marginRight: '20px', marginTop: '2rem'}}>
                         <label for="dniCliente">DNI Cliente</label>
                         <input id="dniCliente" type="number" value={atencionComercial.dniCliente} name="dniCliente" disabled></input>
                     </div>
-                    <div style={{float:'left', marginRight: '20px'}}>
+                    <div style={{float:'left', marginRight: '20px', marginTop: '2rem'}}>
                         <label for="tipoCliente">Tipo Cliente</label>
                         <input id="tipoCliente" type="text" value={atencionComercial.tipoCliente} name="tipoCliente" disabled></input>
                     </div>
-                    <div style={{float:'left', marginRight: '20px'}}>
+                    <div style={{float:'left', marginRight: '20px', marginTop: '2rem'}}>
                         <label for="fechaRegistro">Fecha Registro</label>
                         <input id="fechaRegistro" type="date" value={atencionComercial.fechaRegistro} name="fechaRegistro" disabled></input>
                     </div>                   
-                    <div style={{float:'left', marginRight: '20px'}}>
+                    <div style={{float:'left', marginRight: '20px', marginTop: '2rem'}}>
                         <label for="descripcion">Descripcion</label>
                         <textarea id="descripcion" rows="5" cols="50" type="text" name="descripcion" value={atencionComercial.descripcion} disabled></textarea>
                     </div>
-                    <div style={{float:'left', marginRight: '20px'}}>
+                    <div style={{float:'left', marginRight: '20px', marginTop: '2rem'}}>
                         <label for="ubicacion">Ubicacion</label>
                         <input id="ubicacion" type="text" value={atencionComercial.ubicacion} name="ubicacion" disabled></input>
                     </div>
 
                 </div>
-                <div style={{marginTop: '10rem',display: 'flex', flexDirection: 'column', width: '50%'}}>
+                <div style={{marginTop: '5rem',display: 'flex', flexDirection: 'column', width: '50%'}}>
                     <div style={{float:'left', marginRight: '20px', marginTop: '2rem'}}>
                         <label for="instancia">Instancia</label>
                         <input id="instancia" type="text" name="instancia" disabled value={atencionComercial.instancia}></input>
@@ -136,7 +136,7 @@ export default function VisualizarAtencionComercial(props){
                 </div>
             </div>
             <div style={{textAlign: 'center', marginTop: '4rem'}}>
-            <button className="btn" style={{backgroundColor : "#858587", color: "white", width: '6rem', marginRight: '3rem'}} onClick={() => navigate('/cliente')}>Volver</button>
+            <button className="btn" style={{backgroundColor : "#858587", color: "white", width: '6rem', marginRight: '3rem'}} onClick={() => navigate('/personal')}>Volver</button>
             </div>
             </div>
         </div>

@@ -5,6 +5,8 @@ import { Link, useNavigate } from "react-router-dom"
 import { Table, Paper, TableContainer, TableHead, TableCell, TableRow, TableBody, tableCellClasses } from '@mui/material';
 import {styled} from '@mui/material/styles'
 import VisibilityIcon from '@mui/icons-material/Visibility'
+import IndeterminateCheckBoxIcon from '@mui/icons-material/IndeterminateCheckBox';
+
 
 function createData(
     codigo,
@@ -100,6 +102,9 @@ function createData(
                         <TableCell align="left">
                             <VisibilityIcon style={{cursor: 'pointer'}} onClick={() => {
                                 llamarVisualizar(row.codigo);
+                        }}/>
+                        <IndeterminateCheckBoxIcon style={{cursor: 'pointer', marginLeft: '0.5rem'}} onClick={() => {
+                            alert('Eliminaste la atencion comercial con codigo ' + row.codigo);
                         }}/></TableCell>
                     </TableRow>
                     ))}
