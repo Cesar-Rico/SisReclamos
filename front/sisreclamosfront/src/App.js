@@ -11,6 +11,7 @@ import VisualizarReclamo from './Cliente/VisualizarReclamo';
 import NuevoReclamoPersonal from './Personal/NuevoReclamoPersonal';
 import EditarReclamoPersonal from './Personal/EditarReclamoPersonal';
 import VisualizarAtencionComercial from './Personal/VisualizarAtencionComercial';
+import EditarTicket from './Personal/EditarTicket';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
         <Route path="/nuevoReclamoPersonal" element={<NuevoReclamoPersonal />} />
         <Route path="/editarReclamoPersonal" element={<EditarReclamoPersonal />} />
         <Route path="/visualizarAtencionComercial" element={<VisualizarAtencionComercial />} />
+        <Route path="/editarTicket" element={<EditarTicket />} /> 
       </Routes>
     </BrowserRouter>
   );

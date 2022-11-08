@@ -5,7 +5,7 @@ import { Link, useLocation } from "react-router-dom"
 import { Table, Paper, TableContainer, TableHead, TableCell, TableRow, TableBody, tableCellClasses } from '@mui/material';
 import {styled} from '@mui/material/styles'
 import { useNavigate } from 'react-router-dom'
-
+import axios from "axios"
 import './cliente.css'
 
 
@@ -24,49 +24,67 @@ export default function NuevoReclamoCliente(props) {
     }
 
     const registrarReclamo = () => {
-        alert('Registraste un reclamo');
-        navigate('/cliente');
+        const result = axios({
+            method: 'POST',
+            url: 'http://127.0.0.1:5000/reclamosCanalAtencionPersonal/registrar',
+            data: {
+                numeroCliente: cliente.numeroCliente,
+                fechaRegistro: date,
+                descripcion: descripcion,
+                idPersonal: null
+            },
+            headers: {
+                'Content-Type': 'application/json',
+                'ngrok-skip-browser-warning': '1234'
+            }
+        }).then(function(response){
+            const mensajeAlerta = "Registraste un reclamo exitosamente";
+            navigate('/cliente', {state: {mensajeAlerta: mensajeAlerta}});
+        });
+        
     }
     return (
         <div className="containerApp">
             <div className='sidebar'>
             <ProSidebar>
-                <Menu iconShape="square">
-                    <MenuItem id="primeraOpcion">
+                <Menu iconShape="square" style={{backgroundColor: 'white', height: '100%', position: 'relative'}}>
+                    <div id="hola" style={{backgroundColor: '#5d5fef', borderRadius: '5px'}}>
+                    <MenuItem id="primeraOpcion" style={{color: 'white'}}>
                         Mis Reclamos
                         <Link to="/cliente" />
                     </MenuItem>
-                    <MenuItem>
+                    </div>
+                    <MenuItem style={{color: 'black'}} >
                         Documentos
                         <Link to="/documentosCliente" />
                     </MenuItem>
-                    <MenuItem style={{marginTop: '40rem'}}>
+                    <MenuItem style={{bottom: '0', position: 'absolute', color: 'black'}}>
                         Cerrar sesión
                         <Link to="/" />
                     </MenuItem>
                 </Menu>
             </ProSidebar>
             </div>
-            <div className="content" style={{width: '80%'}}>
-            <div style={{border: "2px solid black", padding: '25px 0'}}>Nuevo Reclamo </div>
+            <div className="content" style={{marginLeft: '4rem'}}>
+            <div style={{ boxShadow: '0 0 3px #ccc', marginTop: '2rem', padding: '25px 0', filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))', fontWeight: '500', fontSize: '28px', lineHeight: '34.13px', width: '78rem'}}>Nuevo Reclamo</div>
             
-            <div style={{marginTop: '10rem', border: '2px solid red', display: 'flex', flexDirection: 'column'}}>
+            <div style={{marginTop: '5rem', display: 'flex', flexDirection: 'column'}}>
                 <div style={{float:'left', marginRight: '20px'}}>
-                    <label for="numeroCliente">Número Cliente</label>
+                    <label for="numeroCliente" style={{fontSize: '18px'}}>Número Cliente</label>
                     <input id="numeroCliente" type="number" value={cliente.numeroCliente} name="numeroCliente" disabled></input>
                 </div>
-                <div style={{float:'left', marginRight: '20px'}}>
-                    <label for="dniCliente">DNI Cliente</label>
+                <div style={{float:'left', marginRight: '20px', marginTop: '2rem'}}>
+                    <label for="dniCliente" style={{fontSize: '18px'}}>DNI Cliente</label>
                     <input id="dniCliente" type="number" value={cliente.dniCliente} name="dniCliente" disabled></input>
                 </div>
 
-                <div style={{float:'left', marginRight: '20px'}}>
-                    <label for="fechaRegistro">Fecha Registro</label>
+                <div style={{float:'left', marginRight: '20px', marginTop: '2rem'}}>
+                    <label for="fechaRegistro" style={{fontSize: '18px'}}>Fecha Registro</label>
                     <input id="fechaRegistro" type="date" value={date} name="fechaRegistro" disabled></input>
                 </div>
 
-                <div style={{float:'left', marginRight: '20px'}}>
-                    <label for="descripcion">Descripcion</label>
+                <div style={{float:'left', marginRight: '20px', marginTop: '2rem'}}>
+                    <label for="descripcion" style={{fontSize: '18px'}}>Descripcion</label>
                     <textarea id="descripcion" rows="5" cols="80" type="text" name="descripcion" value={descripcion} onChange={e => setDescripcion(e.target.value)}></textarea>
                 </div>
 

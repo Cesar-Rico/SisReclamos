@@ -1,8 +1,9 @@
 .sidebar {
-height: 100vh !important;
+height: 99vh !important;
 width: 40vh;
 background-color: white !important;
 }
+
 
 #primeraOpcion {
 margin-top: 10rem;
